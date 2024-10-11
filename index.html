@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .accordion {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            border: none;
+            text-align: left;
+            outline: none;
+        }
+
+        .accordion:active, .accordion:focus {
+            background-color: #0056b3;
+        }
+
+        .panel {
+            background-color: white;
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        /* Drag and Drop Area */
+        .drag-drop {
+            width: 100%;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .drag-drop img {
+            max-width: 100px;
+            cursor: grab;
+        }
+
+        .drag-drop.drag-over {
+            border-color: #007BFF;
+            background-color: #e0f7ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Testing Web Page</h1>
+
+    <h2>Form Elements</h2>
+    <form>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="18" min="18" max="100">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="hobbies">Hobbies:</label>
+            <input type="checkbox" id="hobby1" name="hobby" value="reading"> Reading
+            <input type="checkbox" id="hobby2" name="hobby" value="sports"> Sports
+            <input type="checkbox" id="hobby3" name="hobby" value="travel"> Travel
+        </div>
+
+        <div class="form-group">
+            <label for="range">Experience (in years):</label>
+            <input type="range" id="experience" name="experience" min="0" max="20" value="5">
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Your comments"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">Submit</button>
+    </form>
+
+    <h2>Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>john@example.com</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Doe</td>
+                <td>jane@example.com</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Accordion</h2>
+    <button class="accordion" aria-expanded="false">Section 1</button>
+    <div class="panel">
+        <p>Content for section 1.</p>
+    </div>
+
+    <button class="accordion" aria-expanded="false">Section 2</button>
+    <div class="panel">
+        <p>Content for section 2.</p>
+    </div>
+
+    <button class="accordion" aria-expanded="false">Section 3</button>
+    <div class="panel">
+        <p>Content for section 3.</p>
+    </div>
+
+    <h2>Drag and Drop</h2>
+    <div id="drag-drop-area" class="drag-drop" ondragover="event.preventDefault()" ondrop="dropImage(event)">
+        <p>Drag and drop the image below</p>
+    </div>
+    
+    <img src="https://via.placeholder.com/100" alt="Drag me" id="drag-image" draggable="true" ondragstart="dragImage(event)">
+    
+    <script>
+        // Accordion Functionality
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach((accordion) => {
+            accordion.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        });
+
+        // Drag and Drop Functionality
+        const dragDropArea = document.getElementById('drag-drop-area');
+        const dragImage = document.getElementById('drag-image');
+
+        dragDropArea.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            dragDropArea.classList.add('drag-over');
+        });
+
+        dragDropArea.addEventListener('dragleave', function() {
+            dragDropArea.classList.remove('drag-over');
+        });
+
+        dragDropArea.addEventListener('drop', function(event) {
+            event.preventDefault();
+            dragDropArea.classList.remove('drag-over');
+            const imageId = event.dataTransfer.getData("text");
+            dragDropArea.appendChild(dragImage);
+        });
+
+        dragImage.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        });
+    </script>
+
+</body>
+</html>
